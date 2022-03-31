@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-const countHits = (WrappedComponent) => {
-    // Un state commun aux 2 adversaire
+//! "Etat", "Fonction" ou "action" à mutualiser sur plusieurs components
+const countHits = (WrappedComponent, power) => {
+    // Un state commun aux adversaires
     class CountHits extends Component {
         state = {
             hits: 0,
         };
-        // Un comptage des coups commun aux 2 adversaires
+        // Un comptage des coups commun aux adversaires
         addOne = () => {
             this.setState((prevState) => {
                 return {
@@ -24,7 +25,8 @@ const countHits = (WrappedComponent) => {
             // J'introduis ma condition au changement du state
             if(this.state !== prevState) {
                 const fighterHits = WrappedComponent.name;
-                this.props.reduceLife(fighterHits);
+                // Paramètres récupérés ensuite dans index.js dans la fonction remolife param et param2
+                this.props.reduceLife(fighterHits, power);
             }
 
         }

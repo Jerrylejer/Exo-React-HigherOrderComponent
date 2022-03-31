@@ -17,16 +17,16 @@ class App extends Component {
     //* Si Vegara frappe => Goku pard 10 point de vie
     //! Il faut donc se positionner dans le CountHits où les coups sont portés
 
-    removeLife = (param) => {
+    removeLife = (param, param2) => {
         // Je vérifie que je récupère bien le nom des coups portés
         // console.log(param);
         if (param === 'Vegeta') {
             this.setState({
-                goku: this.state.goku - 10,
+                goku: this.state.goku - param2,
             });
         } else {
             this.setState({
-                vegeta: this.state.vegeta - 10,
+                vegeta: this.state.vegeta - param2,
             });
         }
     };

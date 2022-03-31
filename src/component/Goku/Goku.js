@@ -6,15 +6,33 @@ import './goku.scss';
 class Goku extends Component {
     render() {
         const { name, addOneHit, hocState, life } = this.props;
+        const lifeValue =
+            life > 0 ? (
+                <td>{life}%</td>
+            ) : (
+                <td>
+                    <span className='badge bg-danger'>Dead</span>
+                </td>
+            );
+            const button =
+            life > 0 ?  (
+                <button className='btn btn-success m-3' onClick={addOneHit}>
+                    {name} Frappe !
+                </button>
+            ) :             (
+                <button
+                    className='btn btn-danger m-3'
+                    disabled
+                >
+                    {name} Terrassé !
+                </button>
+            );
 
         return (
             <div className='col'>
                 <img src={goku} alt='goku' className='goku-pic' />
                 <br />
-                <button className='btn btn-success m-3' onClick={addOneHit}>
-                    {name} Frappe !
-                </button>
-
+                {button}
                 <table className='table table-striped'>
                     <thead>
                         <tr>
@@ -25,7 +43,7 @@ class Goku extends Component {
                     <tbody>
                         <tr>
                             <td>{hocState.hits}</td>
-                            <td>{life}</td>
+                            {lifeValue}
                         </tr>
                     </tbody>
                 </table>
@@ -34,4 +52,4 @@ class Goku extends Component {
     }
 }
 
-export default countHits(Goku);
+export default countHits(Goku, 20);
